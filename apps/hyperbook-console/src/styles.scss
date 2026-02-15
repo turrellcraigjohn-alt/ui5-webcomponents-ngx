@@ -1,0 +1,99 @@
+/* SAP UI5 Web Components Theme Variables */
+@import "@ui5/webcomponents-theming/dist/generated/themes/sap_horizon/parameters-bundle.css";
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--sapFontFamily);
+  background-color: var(--sapBackgroundColor);
+  color: var(--sapTextColor);
+}
+
+/* SAP Horizon Theme Colors */
+:root {
+  --sapShell_Background: #f5f6f7;
+  --sapBackgroundColor: #f5f6f7;
+  --sapTextColor: #1d2d3e;
+  --sapLink_Color: #0070b1;
+  --sapHighlightColor: #0070b1;
+}
+
+/* Navigation */
+ui5-side-navigation {
+  min-width: 200px;
+}
+
+/* Cards */
+ui5-card {
+  --_ui5-card-header-border: none;
+}
+
+/* Tables */
+ui5-table {
+  width: 100%;
+}
+
+/* Common utilities */
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+
+/* Status colors */
+.status-success {
+  color: var(--sapPositiveColor);
+}
+
+.status-warning {
+  color: var(--sapWarningColor);
+}
+
+.status-error {
+  color: var(--sapNegativeColor);
+}
+
+.status-info {
+  color: var(--sapInformativeColor);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sapGroup_ContentBackground);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sapScrollBar_FaceColor);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sapScrollBar_Hover_FaceColor);
+}

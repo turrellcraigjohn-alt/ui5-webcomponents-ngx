@@ -48,7 +48,8 @@ export class ComponentFile extends AngularGeneratedFile {
       exported: exportedName,
       types: [ExportSpecifierType.Class, AngularExportSpecifierType.NgModule]
     })
-    this.addImport(['Component', 'ElementRef', 'NgZone', 'ChangeDetectorRef', 'booleanAttribute', 'Input as InputDecorator', 'inject'], '@angular/core');
+    this.addImport(['Component', 'ElementRef', 'NgZone', 'ChangeDetectorRef', 'booleanAttribute', 'Input as InputDecorator', 'inject', 'OnInit', 'signal'], '@angular/core');
+    this.addImport(['StateManagementService'], '@nucleus/ui5-angular/services');
     if (this.componentData.outputs.length) {
       this.addImport(['EventEmitter'], '@angular/core');
       this.addImport(['ProxyOutputs'], utilsFile.relativePathFrom);
@@ -163,13 +164,17 @@ export class ComponentFile extends AngularGeneratedFile {
 
   get componentClassCode() {
     const cvaDirectiveInjectionCode = this.componentData.formData.length > 0 ? `protected _cva = inject(${genericCva.className});` : ``;
-    return `class ${this.componentClassName} {
+    return `class ${this.componentClassName} implements OnInit {
       ${this.inputsCode}
       ${this.outputsCode}
 
       private elementRef: ElementRef<${this.componentData.baseName}> = inject(ElementRef);
       private zone = inject(NgZone);
       private cdr = inject(ChangeDetectorRef);
+      private stateManager = inject(StateManagementService);
+      
+      isLoading = this.stateManager.isLoading(this.element.id || '${this.componentClassName}');
+
       ${cvaDirectiveInjectionCode}
 
       get element(): ${this.componentData.baseName} {
@@ -183,6 +188,13 @@ export class ComponentFile extends AngularGeneratedFile {
       ) {
         this.cdr.detach();
         ${this.componentData.formData.length > 0 ? `this._cva.host = this;` : ''}
+      }
+
+      ngOnInit(): void {
+        this.stateManager.registerComponent(this.element.id || '${this.componentClassName}', {
+          visible: true,
+          enabled: true
+        });
       }
     }`;
   }

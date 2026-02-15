@@ -1,0 +1,63 @@
+{
+  "name": "neo4j-mcp-console",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/neo4j-mcp-console/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/neo4j-mcp-console",
+        "index": "apps/neo4j-mcp-console/src/index.html",
+        "main": "apps/neo4j-mcp-console/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/neo4j-mcp-console/tsconfig.app.json",
+        "assets": [
+          "apps/neo4j-mcp-console/src/favicon.ico",
+          "apps/neo4j-mcp-console/src/assets"
+        ],
+        "styles": ["apps/neo4j-mcp-console/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "neo4j-mcp-console:build:production"
+        },
+        "development": {
+          "browserTarget": "neo4j-mcp-console:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4202
+      }
+    }
+  }
+}

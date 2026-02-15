@@ -1,0 +1,81 @@
+{
+  "name": "sap-pipeline-console",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/sap-pipeline-console/src",
+  "prefix": "app",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/sap-pipeline-console",
+        "index": "apps/sap-pipeline-console/src/index.html",
+        "main": "apps/sap-pipeline-console/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/sap-pipeline-console/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/sap-pipeline-console/src/favicon.ico",
+          "apps/sap-pipeline-console/src/assets"
+        ],
+        "styles": ["apps/sap-pipeline-console/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all",
+          "optimization": true,
+          "buildOptimizer": true,
+          "vendorChunk": true,
+          "extractLicenses": true,
+          "namedChunks": true
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "sap-pipeline-console:build:production"
+        },
+        "development": {
+          "buildTarget": "sap-pipeline-console:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "continuous": true
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "sap-pipeline-console:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "perplexica-console",
+  "version": "1.0.0",
+  "description": "Perplexica Search Console - AI-powered web search interface with SAP UI5 components",
+  "private": true,
+  "scripts": {
+    "start": "nx serve perplexica-console",
+    "build": "nx build perplexica-console",
+    "test": "nx test perplexica-console"
+  },
+  "dependencies": {
+    "@angular/core": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "@ui5/webcomponents": "^2.0.0",
+    "@ui5/webcomponents-fiori": "^2.0.0",
+    "@ui5/webcomponents-icons": "^2.0.0",
+    "rxjs": "^7.8.0"
+  }
+}

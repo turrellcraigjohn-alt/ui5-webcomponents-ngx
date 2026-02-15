@@ -1,0 +1,63 @@
+{
+  "name": "ai2ui-console",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/ai2ui-console/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ai2ui-console",
+        "index": "apps/ai2ui-console/src/index.html",
+        "main": "apps/ai2ui-console/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/ai2ui-console/tsconfig.app.json",
+        "assets": [
+          "apps/ai2ui-console/src/favicon.ico",
+          "apps/ai2ui-console/src/assets"
+        ],
+        "styles": ["apps/ai2ui-console/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ai2ui-console:build:production"
+        },
+        "development": {
+          "browserTarget": "ai2ui-console:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4204
+      }
+    }
+  }
+}
